@@ -5,7 +5,7 @@ from account.models import Account
 
 class LoginForm(forms.Form):
     user_id = forms.CharField(
-        max_length=20,  #문자수 제한
+        max_length=20,  #문자수 제한하기
         required=True,  #필수항목인지
         label='ID', #라벨
         widget=forms.TextInput(attrs={  #폼타입설정(TextInput:text, TextareaInput:textarea, PasswordInput:password
