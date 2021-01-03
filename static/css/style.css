@@ -243,3 +243,20 @@
 	font-size:18px;
 	font-weight: 700;
 }
+
+
+/* Start of cont_write_wrap */
+.wrap > .content_wrap > .cont_write_wrap{
+    width:100%;
+    position:relative;
+}
+
+.wrap > .content_wrap > .cont_write_wrap h2{
+    font-family:'Audiowide', sans-serif;
+    font-size:30px;
+    color:#786685;
+    letter-spacing:0;
+    text-align:left;
+    margin-bottom:23px;
+}
+

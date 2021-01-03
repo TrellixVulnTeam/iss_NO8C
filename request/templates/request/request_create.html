@@ -1,8 +1,63 @@
 {% extends 'request.html' %}   <!--최상단에 base가 될 base.html을 연결시켜준다.-->
 {% block content %} <!--컨텐츠영역에 사용될 태그 선언-->
-    <form action="" method="post">  <!--action은 이 폼에서 입력받은 정보를 어느페이지로 보내줄건지 설정(장고에서는 action이 비어있는 경우가 많음. 비워두면 자기 자신임) , method의 경우 입력받은 내용을 어떤 형태로 전달할 건지에 대한 설정-->
-        {% csrf_token %}	<!--웹사이트 공격 방지용인데 그냥 써주자;;-->
-	    {{form.as_p}}	<!--create뷰와 update뷰는 요게 필요. 입력과 업데이트가 가능한 인풋폼을 생성하고 그걸 p태그로 감싼다-->
-	    <input type="submit" value="신규 신청" class="btn btn-info btn-sm">
-    </form>
+    <div class="cont_write_wrap">
+        <h2>NEW REQUEST</h2>
+        <form action="{% url 'request:list' %}" method="post" autocomplete="off">
+            {% csrf_token %}    <!--웹사이트 공격 방지용인데 그냥 써주자;;-->
+            <div class="cont_box_min">
+                <ul>
+                    <li class="width_full">
+                        {{ form.subject }}
+                    </li>
+                </ul>
+                <ul>
+                    <li class="w40p pr25">
+                        {{ form.project }}
+                    </li>
+                    <li class="w40p pr25">
+                        {{ form.name }}
+                    </li>
+                    <li class="w20p">
+                        {{ form.finished_date }}
+                    </li>
+                </ul>
+            </div>
+            <div class="cont_box_min">
+                <ul>
+                    <li class="w40p pr25">
+                        {{ form.work_class }}
+                    </li>
+                    <li class="w40p pr25">
+                        {{ form.work_class_detail }}
+                    </li>
+                    <li class="w20p">
+                        <button class="btn_small_icon bsi_del"></button>
+                        <button class="btn_small_icon bsi_add"></button>
+                    </li>
+                </ul>
+            </div>
+            <div class="cont_box_min">
+                <ul>
+                    <li class="width_full">
+                        {{ form.memo }}
+                    </li>
+                </ul>
+            </div>
+            <div class="cont_box_min file_upload_min">
+                <div class="file_upload_before">
+                    <p>첨부파일을 추가해 주세요</p>
+                </div>
+            </div>
+            <div class="page_control_btn_wrap">
+                <div class="page_control_btn_min">
+                    <ul>
+                        <!--<li><input type="submit" class="pgc_btn_list" title="List" value="List"></li>
+                        <li><input type="submit" class="pgc_btn_del" title="Delete" value="Delete"></li>
+                        <li><input type="submit" class="pgc_btn_modify" title="Modify" value="Modify"></li>-->
+                        <li><input type="submit" class="pgc_btn_apply" title="Apply" value="Apply">
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}

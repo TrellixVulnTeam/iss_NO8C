@@ -7,7 +7,7 @@ from config import settings
 
 
 class Account(models.Model):
-    user_id = models.CharField(max_length=20)   #아이디임
+    user_id = models.CharField(max_length=20)   #아이디
     user_name = models.CharField(max_length=50) #이름
     phone_number = models.CharField(max_length=12)  #전화번호
     email = models.EmailField(max_length=30)    #이메일
