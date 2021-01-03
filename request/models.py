@@ -32,8 +32,16 @@ URLField : 링크
 # Create your models here.
 
 class Request(models.Model):
+    DEFAULTTEXT = ''
+    PROJECT_CHOICES = { #프로젝트 리스트
+        (DEFAULTTEXT, '프로젝트 선택'),
+        ('project_ksw_youjibosu', '감사원 - 유지보수'),
+        ('project_ksw_siljuck', '감사원 - 실적평가'),
+        ('project_ykb_youjibosu', '외교부 - 전자감사')
+    }
+
     subject = models.CharField(max_length=50, blank=True, null=True)   #제목
-    project = models.CharField(max_length=50, blank=False, null=True)  #프로젝트명
+    project = models.CharField(max_length=50, blank=False, null=True, choices=PROJECT_CHOICES, default=DEFAULTTEXT)  #프로젝트명
     name = models.CharField(max_length=50, blank=True)  #담당자
     created_date = models.DateField(null=True, blank=True)  #신청일
     finished_date = models.DateField(null=True, blank=True) #완료요청일
@@ -44,7 +52,7 @@ class Request(models.Model):
 
 
     def __str__(self):
-        return "제목 : " + self.subject + ", 담당자 : " + self.name + ", 작성일 : " + str(self.created_date) + ", 마감일 : " + str(self.finished_date) + ", 메일 : " + self.mail + ", 메모 : " + self.memo + ", 조회수 : " + str(self.hits)
+        return "제목 : " + str(self.subject) + ", 프로젝트 : " + str(self.project) + ", 담당자 : " + str(self.name) + ", 신청일 : " + str(self.created_date) + ", 완료요청일 : " + str(self.finished_date) + ", 상세요청사항 : " + str(self.memo) + ", 조회수 : " + str(self.hits) + ", 업무분류 : " + str(self.work_class) + ", 업무분류상세 : " + str(self.work_class_detail)
 
     def get_absolute_url(self):
         return reverse('detail', args=[str(self.id)])   #현재 글번호(id)값에 해당하는 detail 페이지로 이동

@@ -14,7 +14,7 @@ class CreateForm(forms.ModelForm):
         'finished_date',
         'work_class',
         'work_class_detail',
-        'memo'
+        'memo',
     ]
 
 
@@ -26,6 +26,7 @@ class CreateForm(forms.ModelForm):
         ),
         'project': forms.Select(
             attrs={
+                'placeholder': '제목을 입력해 주세요'
             }
         ),
         'name': forms.Select(
