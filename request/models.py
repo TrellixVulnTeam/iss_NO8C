@@ -33,22 +33,47 @@ URLField : 링크
 
 class Request(models.Model):
     DEFAULTTEXT = ''
-    PROJECT_CHOICES = { #프로젝트 리스트
-        (DEFAULTTEXT, '프로젝트 선택'),
+
+    PROJECT_CHOICES = {
+        (DEFAULTTEXT, '프로젝트'),
         ('project_ksw_youjibosu', '감사원 - 유지보수'),
         ('project_ksw_siljuck', '감사원 - 실적평가'),
         ('project_ykb_youjibosu', '외교부 - 전자감사')
     }
 
+    NAME_CHOICES = {
+        (DEFAULTTEXT, '희망 담당자'),
+        ('name_yhj', '양현정 주임'),
+        ('name_akh', '안계훈 선임'),
+        ('name_ksh', '강승환 팀장'),
+        ('name_ksm', '김선민 주임')
+    }
+
+    WORK_CHOICES = {
+        (DEFAULTTEXT, '업무 분류'),
+        ('work_plan', '기획'),
+        ('work_design', '디자인'),
+        ('work_publishing', '퍼블리싱'),
+        ('work_development', '개발')
+    }
+
+    WORKDETAIL_CHOICES = {
+        (DEFAULTTEXT, '업무 분류'),
+        ('work_plan', '기획'),
+        ('work_design', '디자인'),
+        ('work_publishing', '퍼블리싱'),
+        ('work_development', '개발')
+    }
+
     subject = models.CharField(max_length=50, blank=True, null=True)   #제목
     project = models.CharField(max_length=50, blank=False, null=True, choices=PROJECT_CHOICES, default=DEFAULTTEXT)  #프로젝트명
-    name = models.CharField(max_length=50, blank=True)  #담당자
+    name = models.CharField(max_length=50, blank=False, null=True, choices=NAME_CHOICES, default=DEFAULTTEXT)  #담당자
     created_date = models.DateField(null=True, blank=True)  #신청일
     finished_date = models.DateField(null=True, blank=True) #완료요청일
     memo = models.TextField(max_length=200, blank=True, null=True) #상세요청사항
     hits = models.IntegerField(null=True, blank=True)   #조회수`
-    work_class = models.CharField(max_length=50, blank=False, null=True)    #업무분류
-    work_class_detail = models.CharField(max_length=50, blank=False, null=True) #업무분류상세
+    work_class = models.CharField(max_length=50, blank=False, null=True, choices=WORK_CHOICES, default=DEFAULTTEXT)    #업무분류
+    work_class_detail = models.CharField(max_length=50, blank=False, null=True, choices=WORKDETAIL_CHOICES, default=DEFAULTTEXT) #업무분류상세
 
 
     def __str__(self):

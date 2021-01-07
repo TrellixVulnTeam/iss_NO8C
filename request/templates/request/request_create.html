@@ -2,8 +2,8 @@
 {% block content %} <!--컨텐츠영역에 사용될 태그 선언-->
     <div class="cont_write_wrap">
         <h2>NEW REQUEST</h2>
-        <form action="{% url 'request:list' %}" method="post" autocomplete="off">
-            {% csrf_token %}    <!--웹사이트 공격 방지용인데 그냥 써주자;;-->
+        <form action="{% url 'request:add' %}" method="post" autocomplete="off">
+            {% csrf_token %}    <!--웹사이트 공격 방지용인데 그냥 써주자-->
             <div class="cont_box_min">
                 <ul>
                     <li class="width_full">
@@ -24,13 +24,13 @@
             </div>
             <div class="cont_box_min">
                 <ul>
-                    <li class="w40p pr25">
+                    <li class="width_full">
                         {{ form.work_class }}
                     </li>
-                    <li class="w40p pr25">
+                    <li class="w40p pr25" style="display:none;">
                         {{ form.work_class_detail }}
                     </li>
-                    <li class="w20p">
+                    <li class="w20p" style="display:none;">
                         <button class="btn_small_icon bsi_del"></button>
                         <button class="btn_small_icon bsi_add"></button>
                     </li>

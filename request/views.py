@@ -1,3 +1,4 @@
+from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView  #클래스형 뷰인 장고의 generic.list 모듈에서 ListView를 불러온다.
 from django.views.generic.edit import CreateView, UpdateView, DeleteView #클래스형 뷰인 장고의 generic.edit 모듈에서 CreateView와 UpdateView를 불러온다.
@@ -16,14 +17,14 @@ class RequestListView(ListView):
 
 
 def RequestListCreate(request):
-
+    
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
             Request = form.save()
             return redirect('/')
     else:
-        form = CreateForm()
+        return HttpResponseNotFound("Validation Faild")
     return render(request, 'request/request_create.html', { 'form': form })
 
 
