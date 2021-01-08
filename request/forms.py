@@ -2,9 +2,7 @@ from django import forms
 
 from .models import Request
 
-
 class CreateForm(forms.ModelForm):
-
   class Meta:
     model = Request
     fields = [
@@ -16,7 +14,6 @@ class CreateForm(forms.ModelForm):
         'work_class_detail',
         'memo',
     ]
-
 
     widgets = {
         'subject': forms.TextInput(

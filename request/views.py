@@ -18,17 +18,20 @@ class RequestListView(ListView):
 
 
 def RequestListCreate(request):
-
-    if request.method == "POST":
-
-        form = CreateForm(request.POST) #PostForm으로 부터 받은 데이터를 처리하기 위한 인스턴스 생성
-        if form.is_valid():#폼 검증 메소드
-            Request = form.save()#Request 오브젝트를 form으로 부터 가져오지만, 실제로 DB반영은 하지 않는다.
-            Request.generate()
-            return redirect('/')  # url의 name을 경로대신 입력한다.
-    else:
-
-        return HttpResponseNotFound("Validation Failed")
+    #----------------------------------------- [수정]---------------------------------------------#
+    # + Create New버튼 클릭 시 GET 방식으로 호출하면서 POST 여부를 체크하니까
+    # Validation Failed 발생
+    # POST 방식을 사용할때 화면에서 <form method="post"... 라고 작성해야 하며,
+    # 로그인, 폼 입력 후 저장할 때 POST 방식으로 전달 함
+    # -------------------------------------------------------------------------------------------#
+    #if request.method == "POST":
+    form = CreateForm(request.POST) #PostForm으로 부터 받은 데이터를 처리하기 위한 인스턴스 생성
+    if form.is_valid():#폼 검증 메소드
+        Request = form.save()#Request 오브젝트를 form으로 부터 가져오지만, 실제로 DB반영은 하지 않는다.
+        Request.generate()
+        return redirect('/')  # url의 name을 경로대신 입력한다.
+    #else:
+    #    return HttpResponseNotFound("Validation Failed")
 
     return render(request, 'request/request_create.html', { 'form': form })
 
