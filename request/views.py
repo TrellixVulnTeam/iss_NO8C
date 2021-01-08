@@ -16,16 +16,22 @@ class RequestListView(ListView):
     model = Request #연결할 모델을 지정해 준다.
 
 
+
 def RequestListCreate(request):
-    
-    if request.method == 'POST':
-        form = CreateForm(request.POST)
-        if form.is_valid():
-            Request = form.save()
-            return redirect('/')
+
+    if request.method == "POST":
+
+        form = CreateForm(request.POST) #PostForm으로 부터 받은 데이터를 처리하기 위한 인스턴스 생성
+        if form.is_valid():#폼 검증 메소드
+            Request = form.save()#Request 오브젝트를 form으로 부터 가져오지만, 실제로 DB반영은 하지 않는다.
+            Request.generate()
+            return redirect('/')  # url의 name을 경로대신 입력한다.
     else:
-        return HttpResponseNotFound("Validation Faild")
+
+        return HttpResponseNotFound("Validation Failed")
+
     return render(request, 'request/request_create.html', { 'form': form })
+
 
 
 

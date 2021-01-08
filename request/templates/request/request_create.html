@@ -2,7 +2,7 @@
 {% block content %} <!--컨텐츠영역에 사용될 태그 선언-->
     <div class="cont_write_wrap">
         <h2>NEW REQUEST</h2>
-        <form action="{% url 'request:add' %}" method="post" autocomplete="off">
+        <form method="post" autocomplete="off">
             {% csrf_token %}    <!--웹사이트 공격 방지용인데 그냥 써주자-->
             <div class="cont_box_min">
                 <ul>
