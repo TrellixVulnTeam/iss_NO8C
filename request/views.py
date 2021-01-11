@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView #클래
 from django.views.generic.detail import DetailView #클래스형 뷰인 장고의 generic.detail 모듈에서 DetailView를 불러온다.
 
 
+
 from django.urls import reverse_lazy
 
 from .forms import CreateForm
@@ -15,6 +16,28 @@ from .models import Request
 
 class RequestListView(ListView):
     model = Request #연결할 모델을 지정해 준다.
+    template_name = 'request/request_list.html'  # 데이터를 전달할(?) 템플릿을 지정
+    context_object_name = 'list'  # 템플릿에 넘어갈 정보? context 지정
+    paginate_by = 5  # 화면에 표시할 게시물은 5개로 제한
+
+    def get_context_data(self, **kwargs):
+        context = super(RequestListView, self).get_context_data(**kwargs)
+        paginator = context['paginator']
+        page_numbers_range = 5  # Display only 5 page numbers
+        max_index = len(paginator.page_range)
+
+        page = self.request.GET.get('page')
+        current_page = int(page) if page else 1
+
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+        return context
+
 
 
 

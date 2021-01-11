@@ -17,6 +17,11 @@
                     </li>
                     <hr>
                     <li>
+                        <span>희망 담당자</span>
+                        <p>{{ object.name }}</p>
+                    </li>
+                    <hr>
+                    <li>
                         <span>업무 분류</span>
                         <p>{{ object.work_class }}</p>
                     </li>
@@ -40,7 +45,7 @@
                     <ul>
                         <!--<li><input type="button" class="pgc_btn_del" title="Delete" value="Delete"></li>
                         <li><input type="submit" class="pgc_btn_apply" title="Apply" value="Apply"></li>-->
-                        <li><input type="button" class="pgc_btn_list" title="List" value="List" onclick="location.href='{% url 'request:list' %}'"</li>
+                        <li><input type="button" class="pgc_btn_list" title="List" value="List" onclick="location.href='{% url 'request:list' %}'"></li>
                         <li><input type="button" class="pgc_btn_modify" title="Modify" value="Modify"></li>
                     </ul>
                 </div>

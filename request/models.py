@@ -43,10 +43,10 @@ class Request(models.Model):
 
     NAME_CHOICES = {
         (DEFAULTTEXT, '희망 담당자'),
-        ('name_yhj', '양현정 주임'),
-        ('name_akh', '안계훈 선임'),
-        ('name_ksh', '강승환 팀장'),
-        ('name_ksm', '김선민 주임')
+        ('양현정 주임', '양현정 주임'),
+        ('안계훈 선임', '안계훈 선임'),
+        ('강승환 팀장', '강승환 팀장'),
+        ('김선민 주임', '김선민 주임')
     }
 
     WORK_CHOICES = {
@@ -69,9 +69,9 @@ class Request(models.Model):
     subject = models.CharField(max_length=50, blank=False, null=False)   #제목
     project = models.CharField(max_length=50, blank=True, null=True, choices=PROJECT_CHOICES, default=DEFAULTTEXT)  #프로젝트명
     name = models.CharField(max_length=50, blank=True, null=True, choices=NAME_CHOICES, default=DEFAULTTEXT)  #담당자
-    created_date = models.DateField(null=True, blank=True)  #신청일
-    finished_date = models.DateField(null=True, blank=True) #완료요청일
-    memo = models.TextField(max_length=200, blank=False, null=False) #상세요청사항
+    created_date = models.CharField(max_length=50, null=True, blank=True)  #신청일
+    finished_date = models.CharField(max_length=50, null=True, blank=True) #완료요청일
+    memo = models.TextField(max_length=2000, blank=False, null=False) #상세요청사항
     hits = models.IntegerField(null=True, blank=True)   #조회수`
     work_class = models.CharField(max_length=50, blank=True, null=True, choices=WORK_CHOICES, default=DEFAULTTEXT)    #업무분류
     work_class_detail = models.CharField(max_length=50, blank=True, null=True, choices=WORKDETAIL_CHOICES, default=DEFAULTTEXT) #업무분류상세

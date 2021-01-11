@@ -65,7 +65,7 @@
                     {% for request in object_list %}
                     <tr onclick="location.href='{% url 'request:detail' pk=request.id %}'">
                         <td>{{forloop.counter}}</td>
-                        <td class="txt_align_left text_bold td_emergency">{{request.subject}}</td>
+                        <td class="txt_align_left text_bold">{{request.subject}}</td>
                         <td id="list_profile"><img src="{% static 'images/profile_sample_02.png' %}">{{request.name}}</td>
                         <td>{{request.created_date}}</td>
                         <td>{{request.finished_date}}</td>
@@ -74,16 +74,35 @@
                     {% endfor %}
                 </tbody>
             </table>
+
+            <!--페이징-->
+            {% if is_paginated %}
             <div class="table_paging">
                 <ul>
-                    <li></li>
-                    <li></li>
-                    <li class="active">1</li>
-                    <li>2</li>
-                    <li></li>
-                    <li></li>
+
+                    {% if page_obj.has_previous %}
+                    <li>
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Prev</a>
+                    </li>
+                    {% else %}
+                    {% endif %}
+
+                    {% for page in page_range %}
+                    <li {% if page == page_obj.number %}class="active"{% endif %}>
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li>
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                    {% else %}
+                    {% endif %}
                 </ul>
             </div>
+            {% endif %}
+
         </form>
     </div>
 
