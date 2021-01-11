@@ -65,15 +65,16 @@ class Request(models.Model):
         ('work_development', '개발')
     }
 
-    subject = models.CharField(max_length=50, blank=True, null=True)   #제목
-    project = models.CharField(max_length=50, blank=False, null=True, choices=PROJECT_CHOICES, default=DEFAULTTEXT)  #프로젝트명
-    name = models.CharField(max_length=50, blank=False, null=True, choices=NAME_CHOICES, default=DEFAULTTEXT)  #담당자
+
+    subject = models.CharField(max_length=50, blank=False, null=False)   #제목
+    project = models.CharField(max_length=50, blank=True, null=True, choices=PROJECT_CHOICES, default=DEFAULTTEXT)  #프로젝트명
+    name = models.CharField(max_length=50, blank=True, null=True, choices=NAME_CHOICES, default=DEFAULTTEXT)  #담당자
     created_date = models.DateField(null=True, blank=True)  #신청일
     finished_date = models.DateField(null=True, blank=True) #완료요청일
-    memo = models.TextField(max_length=200, blank=True, null=True) #상세요청사항
+    memo = models.TextField(max_length=200, blank=False, null=False) #상세요청사항
     hits = models.IntegerField(null=True, blank=True)   #조회수`
-    work_class = models.CharField(max_length=50, blank=False, null=True, choices=WORK_CHOICES, default=DEFAULTTEXT)    #업무분류
-    work_class_detail = models.CharField(max_length=50, blank=False, null=True, choices=WORKDETAIL_CHOICES, default=DEFAULTTEXT) #업무분류상세
+    work_class = models.CharField(max_length=50, blank=True, null=True, choices=WORK_CHOICES, default=DEFAULTTEXT)    #업무분류
+    work_class_detail = models.CharField(max_length=50, blank=True, null=True, choices=WORKDETAIL_CHOICES, default=DEFAULTTEXT) #업무분류상세
 
 
     def __str__(self):

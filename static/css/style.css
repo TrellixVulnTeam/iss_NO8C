@@ -260,3 +260,30 @@
     margin-bottom:23px;
 }
 
+ul.cont_detail_ui{
+    display:block;
+    position:relative;
+}
+
+ul.cont_detail_ui > li{
+    float:left;
+    position:relative;
+}
+
+ul.cont_detail_ui > li > span{
+    color:#D6CEDC;
+    font-size:13px;
+}
+
+ul.cont_detail_ui > li > p{
+    color:#786685;
+    font-weight:600;
+}
+
+ul.cont_detail_ui > hr{
+    width:1px;
+    height:36px;
+    float:left;
+    background:#ECE6F1;
+    margin:5px 30px 0px 30px;
+}

@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponseNotFound
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView  #클래스형 뷰인 장고의 generic.list 모듈에서 ListView를 불러온다.
@@ -18,6 +19,21 @@ class RequestListView(ListView):
 
 
 def RequestListCreate(request):
+
+    if request.method == 'POST':
+        form = CreateForm(request.POST)  # CreateForm으로 부터 받은 데이터를 처리하기 위한 인스턴스 생성
+        if form.is_valid():  # 폼 검증 메소드
+            Request = form.save()  # Request 오브젝트를 form으로 부터 가져오지만, 실제로 DB반영은 하지 않는다.
+            return redirect('request:list')  # url의 name을 경로대신 입력한다.
+        else:
+            return HttpResponseNotFound("Validation Failed")
+    else:
+        form = CreateForm()
+
+    return render(request, 'request/request_create.html', {'form': form })
+
+'''#백업
+def RequestListCreate_backup(request):
     #----------------------------------------- [수정]---------------------------------------------#
     # + Create New버튼 클릭 시 GET 방식으로 호출하면서 POST 여부를 체크하니까
     # Validation Failed 발생
@@ -25,7 +41,7 @@ def RequestListCreate(request):
     # 로그인, 폼 입력 후 저장할 때 POST 방식으로 전달 함
     # -------------------------------------------------------------------------------------------#
     #if request.method == "POST":
-    form = CreateForm(request.POST) #PostForm으로 부터 받은 데이터를 처리하기 위한 인스턴스 생성
+    form = CreateForm(request.POST) #CreateForm으로 부터 받은 데이터를 처리하기 위한 인스턴스 생성
     if form.is_valid():#폼 검증 메소드
         Request = form.save()#Request 오브젝트를 form으로 부터 가져오지만, 실제로 DB반영은 하지 않는다.
         Request.generate()
@@ -34,7 +50,7 @@ def RequestListCreate(request):
     #    return HttpResponseNotFound("Validation Failed")
 
     return render(request, 'request/request_create.html', { 'form': form })
-
+'''
 
 
 

@@ -376,15 +376,18 @@
     margin-right:0px;
 }
 
-.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit]{
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit],
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=button]{
     padding:12px 34px;
     border-radius:100px;
     color:#fff;
     background:#6C4F82;
     transition:all 0.3s;
+    cursor:pointer;
 }
 
-.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit]:hover{
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit]:hover,
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=button]:hover{
     background:#BF1C9E;
 }
 
@@ -401,7 +404,7 @@
     background-color:#BF1C9E;
 }
 
-.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit].pgc_btn_list{
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=button].pgc_btn_list{
     background-image:url(/static/images/pgc_icon_list.png);
     background-repeat:no-repeat;
     background-position:left 34px center;
@@ -409,7 +412,7 @@
     transition:all 0.3s;
 }
 
-.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit].pgc_btn_del{
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=button].pgc_btn_del{
     background-image:url(/static/images/pgc_icon_del.png);
     background-repeat:no-repeat;
     background-position:left 34px center;
@@ -417,7 +420,7 @@
     transition:all 0.3s;
 }
 
-.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=submit].pgc_btn_modify{
+.page_control_btn_wrap .page_control_btn_min > ul > li > input[type=button].pgc_btn_modify{
     background-image:url(/static/images/pgc_icon_modify.png);
     background-repeat:no-repeat;
     background-position:left 34px center;

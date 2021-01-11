@@ -1,5 +1,50 @@
 {% extends 'request.html' %}   <!--최상단에 base가 될 base.html을 연결시켜준다.-->
 {% block content %} <!--컨텐츠영역에 사용될 태그 선언-->
-    {{object.subject}}<br>
-    {{object.created_date}}
+     <div class="cont_write_wrap cont_detail_wrap">
+        <h2>NEW REQUEST</h2>
+        <form method="post" autocomplete="off">
+            {% csrf_token %}    <!--웹사이트 공격 방지용인데 그냥 써주자-->
+            <div class="cont_box_min">
+                <ul class="cont_detail_ui">
+                    <li>
+                        <span>제목</span>
+                        <p>{{ object.subject }}</p>
+                    </li>
+                    <hr>
+                    <li>
+                        <span>프로젝트</span>
+                        <p>{{ object.project }}</p>
+                    </li>
+                    <hr>
+                    <li>
+                        <span>업무 분류</span>
+                        <p>{{ object.work_class }}</p>
+                    </li>
+                    <hr>
+                    <li>
+                        <span>완료 요청일</span>
+                        <p>{{ object.finished_date }}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="cont_box_min">
+                <ul class="cont_detail_ui">
+                    <li>
+                        <span>상세 요청 내용</span>
+                        <p>{{ object.memo }}</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="page_control_btn_wrap">
+                <div class="page_control_btn_min">
+                    <ul>
+                        <!--<li><input type="button" class="pgc_btn_del" title="Delete" value="Delete"></li>
+                        <li><input type="submit" class="pgc_btn_apply" title="Apply" value="Apply"></li>-->
+                        <li><input type="button" class="pgc_btn_list" title="List" value="List" onclick="location.href='{% url 'request:list' %}'"</li>
+                        <li><input type="button" class="pgc_btn_modify" title="Modify" value="Modify"></li>
+                    </ul>
+                </div>
+            </div>
+        </form>
+    </div>
 {% endblock %}
